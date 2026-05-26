@@ -16,7 +16,6 @@
 package org.rauschig.jarchivelib;
 
 import java.io.IOException;
-
 import org.apache.commons.compress.archivers.ArchiveInputStream;
 
 /**
@@ -32,30 +31,26 @@ class CommonsArchiveStream extends ArchiveStream {
 
     @Override
     protected ArchiveEntry createNextEntry() throws IOException {
-        org.apache.commons.compress.archivers.ArchiveEntry next = stream.getNextEntry();
-
-        return (next == null) ? null : new CommonsArchiveEntry(this, next);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read() throws IOException {
-        return stream.read();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read(byte[] b) throws IOException {
-        return stream.read(b);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int read(byte[] b, int off, int len) throws IOException {
-        return stream.read(b, off, len);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void close() throws IOException {
-        super.close();
-        stream.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

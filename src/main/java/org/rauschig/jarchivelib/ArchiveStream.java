@@ -32,27 +32,26 @@ public abstract class ArchiveStream extends InputStream implements Closeable {
 
     /**
      * Returns the {@link ArchiveEntry} the stream currently points to.
-     * 
+     *
      * @return the current {@link ArchiveEntry}
      */
     public ArchiveEntry getCurrentEntry() {
-        return currentEntry;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Moves the pointer of the stream to the next {@link ArchiveEntry} and returns it.
-     * 
+     *
      * @return the next archive entry.
      * @throws IOException propagated I/O exception
      */
     public ArchiveEntry getNextEntry() throws IOException {
-        currentEntry = createNextEntry();
-        return currentEntry;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Abstract method to create the next {@link ArchiveEntry} for the {@link ArchiveStream} implementation.
-     * 
+     *
      * @return the next archive entry
      * @throws IOException propagated I/O exception
      */
@@ -60,16 +59,15 @@ public abstract class ArchiveStream extends InputStream implements Closeable {
 
     @Override
     public void close() throws IOException {
-        closed = true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Checks whether the current stream has been closed
-     * 
+     *
      * @return true if the stream has been closed
      */
     public boolean isClosed() {
-        return closed;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

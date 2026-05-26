@@ -68,53 +68,40 @@ public enum ArchiveFormat {
 
     /**
      * Returns the name by which the archive format is identified.
-     * 
+     *
      * @return the archiver format name
      */
     public String getName() {
-        return name;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Returns the default file extension for this compression type. E.g. ".gz" for gzip.
-     * 
+     *
      * @return the default file extension preceded by a dot
      */
     public String getDefaultFileExtension() {
-        return defaultFileExtension;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Checks if the given archive format name is valid and known format.
-     * 
+     *
      * @param archiveFormat the archive format name
      * @return true if the given archive format is known to the factory, false otherwise
      */
     public static boolean isValidArchiveFormat(String archiveFormat) {
-        for (ArchiveFormat format : values()) {
-            if (archiveFormat.trim().equalsIgnoreCase(format.getName())) {
-                return true;
-            }
-        }
-
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Attempts to return the {@link ArchiveFormat} instance from a possible given string representation. Ignores case.
-     * 
+     *
      * @param archiveFormat string representation of the archive format. E.g. "tar" or "ZIP".
      * @return the compression type enum
      * @throws IllegalArgumentException if the given archive format is unknown.
      */
     public static ArchiveFormat fromString(String archiveFormat) {
-        for (ArchiveFormat format : values()) {
-            if (archiveFormat.trim().equalsIgnoreCase(format.getName())) {
-                return format;
-            }
-        }
-
-        throw new IllegalArgumentException("Unknown archive format " + archiveFormat);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -41,45 +41,27 @@ class CommonsArchiveEntry implements ArchiveEntry {
 
     @Override
     public String getName() {
-        assertState();
-        return entry.getName();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public long getSize() {
-        assertState();
-        return entry.getSize();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public Date getLastModifiedDate() {
-        assertState();
-        return entry.getLastModifiedDate();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean isDirectory() {
-        assertState();
-        return entry.isDirectory();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public File extract(File destination) throws IOException, IllegalStateException, IllegalArgumentException {
-        assertState();
-        IOUtils.requireDirectory(destination);
-
-        File file = new File(destination, entry.getName());
-
-        if (entry.isDirectory()) {
-            file.mkdirs();
-        } else {
-            file.getParentFile().mkdirs();
-            IOUtils.copy(stream, file);
-        }
-
-        FileModeMapper.map(entry, file);
-
-        return file;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void assertState() {
@@ -90,5 +72,4 @@ class CommonsArchiveEntry implements ArchiveEntry {
             throw new IllegalStateException("Illegal stream pointer");
         }
     }
-
 }

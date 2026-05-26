@@ -25,7 +25,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
-
 import org.apache.commons.compress.archivers.ArchiveEntry;
 
 /**
@@ -35,6 +34,7 @@ import org.apache.commons.compress.archivers.ArchiveEntry;
 abstract class FileModeMapper {
 
     private static final Logger LOG = Logger.getLogger(FileModeMapper.class.getCanonicalName());
+
     private static boolean IS_POSIX = FileSystems.getDefault().supportedFileAttributeViews().contains("posix");
 
     private ArchiveEntry archiveEntry;
@@ -46,34 +46,29 @@ abstract class FileModeMapper {
     public abstract void map(File file) throws IOException;
 
     public ArchiveEntry getArchiveEntry() {
-        return archiveEntry;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Utility method to create a FileModeMapper for the given entry, and use it to map the file mode onto the given
      * file.
-     * 
+     *
      * @param entry the archive entry that holds the mode
      * @param file the file to apply the mode onto
      */
     public static void map(ArchiveEntry entry, File file) throws IOException {
-        create(entry).map(file);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Factory method for creating a FileModeMapper for the given ArchiveEntry. Unknown types will yield a
      * FallbackFileModeMapper that discretely does nothing.
-     * 
+     *
      * @param entry the archive entry for which to create a FileModeMapper for
      * @return a new FileModeMapper instance
      */
     public static FileModeMapper create(ArchiveEntry entry) {
-        if (IS_POSIX) {
-            return new PosixPermissionMapper(entry);
-        }
-
-        // TODO: implement basic windows permission mapping (e.g. with File.setX or attrib)
-        return new FallbackFileModeMapper(entry);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -87,7 +82,7 @@ abstract class FileModeMapper {
 
         @Override
         public void map(File file) throws IOException {
-            // do nothing
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -96,6 +91,7 @@ abstract class FileModeMapper {
      * on the given file.
      */
     public static class PosixPermissionMapper extends FileModeMapper {
+
         public static final int UNIX_PERMISSION_MASK = 0777;
 
         public PosixPermissionMapper(ArchiveEntry archiveEntry) {
@@ -104,15 +100,11 @@ abstract class FileModeMapper {
 
         @Override
         public void map(File file) throws IOException {
-            int mode = getMode() & UNIX_PERMISSION_MASK;
-
-            if (mode > 0) {
-                setPermissions(mode, file);
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public int getMode() throws IOException {
-            return AttributeAccessor.create(getArchiveEntry()).getMode();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private void setPermissions(int mode, File file) {
@@ -133,25 +125,16 @@ abstract class FileModeMapper {
             intToPosixFilePermission.put(0400, PosixFilePermission.OWNER_READ);
             intToPosixFilePermission.put(0200, PosixFilePermission.OWNER_WRITE);
             intToPosixFilePermission.put(0100, PosixFilePermission.OWNER_EXECUTE);
-
             intToPosixFilePermission.put(0040, PosixFilePermission.GROUP_READ);
             intToPosixFilePermission.put(0020, PosixFilePermission.GROUP_WRITE);
             intToPosixFilePermission.put(0010, PosixFilePermission.GROUP_EXECUTE);
-
             intToPosixFilePermission.put(0004, PosixFilePermission.OTHERS_READ);
             intToPosixFilePermission.put(0002, PosixFilePermission.OTHERS_WRITE);
             intToPosixFilePermission.put(0001, PosixFilePermission.OTHERS_EXECUTE);
         }
 
         public Set<PosixFilePermission> map(int mode) {
-            Set<PosixFilePermission> permissionSet = new HashSet<>();
-            for (Map.Entry<Integer, PosixFilePermission> entry : intToPosixFilePermission.entrySet()) {
-                if ((mode & entry.getKey()) > 0) {
-                     permissionSet.add(entry.getValue());
-                }
-            }
-            return permissionSet;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
-
 }

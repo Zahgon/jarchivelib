@@ -16,7 +16,6 @@
 package org.rauschig.jarchivelib;
 
 import java.io.IOException;
-
 import org.apache.commons.compress.archivers.ArchiveEntry;
 import org.apache.commons.compress.archivers.ar.ArArchiveEntry;
 import org.apache.commons.compress.archivers.arj.ArjArchiveEntry;
@@ -26,7 +25,7 @@ import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 
 /**
  * Adapter for accessing mode flags from the different types of ArchiveEntries.
- * 
+ *
  * @param <E> the type of ArchiveEntry
  */
 abstract class AttributeAccessor<E extends ArchiveEntry> {
@@ -39,16 +38,16 @@ abstract class AttributeAccessor<E extends ArchiveEntry> {
 
     /**
      * Returns the entry that is being accessed
-     * 
+     *
      * @return the entry
      */
     public E getEntry() {
-        return entry;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Returns the unix file mode.
-     * 
+     *
      * @return unix file mode flags
      * @throws java.io.IOException
      */
@@ -56,90 +55,83 @@ abstract class AttributeAccessor<E extends ArchiveEntry> {
 
     /**
      * Detects the type of the given ArchiveEntry and returns an appropriate AttributeAccessor for it.
-     * 
+     *
      * @param entry the adaptee
      * @return a new attribute accessor instance
      */
     public static AttributeAccessor<?> create(ArchiveEntry entry) {
-        if (entry instanceof TarArchiveEntry) {
-            return new TarAttributeAccessor((TarArchiveEntry) entry);
-        } else if (entry instanceof ZipArchiveEntry) {
-            return new ZipAttributeAccessor((ZipArchiveEntry) entry);
-        } else if (entry instanceof CpioArchiveEntry) {
-            return new CpioAttributeAccessor((CpioArchiveEntry) entry);
-        } else if (entry instanceof ArjArchiveEntry) {
-            return new ArjAttributeAccessor((ArjArchiveEntry) entry);
-        } else if (entry instanceof ArArchiveEntry) {
-            return new ArAttributeAccessor((ArArchiveEntry) entry);
-        }
-
-        return new FallbackAttributeAccessor(entry);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public static class FallbackAttributeAccessor extends AttributeAccessor<ArchiveEntry> {
+
         protected FallbackAttributeAccessor(ArchiveEntry entry) {
             super(entry);
         }
 
         @Override
         public int getMode() {
-            return 0;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     public static class TarAttributeAccessor extends AttributeAccessor<TarArchiveEntry> {
+
         public TarAttributeAccessor(TarArchiveEntry entry) {
             super(entry);
         }
 
         @Override
         public int getMode() {
-            return getEntry().getMode();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     public static class ZipAttributeAccessor extends AttributeAccessor<ZipArchiveEntry> {
+
         public ZipAttributeAccessor(ZipArchiveEntry entry) {
             super(entry);
         }
 
         @Override
         public int getMode() {
-            return getEntry().getUnixMode();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     public static class CpioAttributeAccessor extends AttributeAccessor<CpioArchiveEntry> {
+
         public CpioAttributeAccessor(CpioArchiveEntry entry) {
             super(entry);
         }
 
         @Override
         public int getMode() {
-            return (int) getEntry().getMode();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     public static class ArjAttributeAccessor extends AttributeAccessor<ArjArchiveEntry> {
+
         public ArjAttributeAccessor(ArjArchiveEntry entry) {
             super(entry);
         }
 
         @Override
         public int getMode() throws IOException {
-            return getEntry().getMode();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
     public static class ArAttributeAccessor extends AttributeAccessor<ArArchiveEntry> {
+
         public ArAttributeAccessor(ArArchiveEntry entry) {
             super(entry);
         }
 
         @Override
         public int getMode() throws IOException {
-            return getEntry().getMode();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
-
 }

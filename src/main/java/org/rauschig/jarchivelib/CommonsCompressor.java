@@ -17,7 +17,6 @@ package org.rauschig.jarchivelib;
 
 import static org.rauschig.jarchivelib.CommonsStreamFactory.createCompressorInputStream;
 import static org.rauschig.jarchivelib.CommonsStreamFactory.createCompressorOutputStream;
-
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -25,7 +24,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
 import org.apache.commons.compress.compressors.CompressorException;
 import org.apache.commons.compress.compressors.CompressorInputStream;
 import org.apache.commons.compress.compressors.CompressorOutputStream;
@@ -45,68 +43,27 @@ class CommonsCompressor implements Compressor {
     }
 
     public CompressionType getCompressionType() {
-        return compressionType;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void compress(File source, File destination) throws IllegalArgumentException, IOException {
-        assertSource(source);
-        assertDestination(destination);
-
-        if (destination.isDirectory()) {
-            destination = new File(destination, getCompressedFilename(source));
-        }
-
-        CompressorOutputStream compressed = null;
-        BufferedInputStream input = null;
-        try {
-            input = new BufferedInputStream(new FileInputStream(source));
-            compressed = createCompressorOutputStream(this, destination);
-
-            IOUtils.copy(input, compressed);
-        } catch (CompressorException e) {
-            throw new IOException(e);
-        } finally {
-            IOUtils.closeQuietly(compressed);
-            IOUtils.closeQuietly(input);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void decompress(File source, File destination) throws IOException {
-        assertSource(source);
-        assertDestination(destination);
-
-        if (destination.isDirectory()) {
-            destination = new File(destination, getDecompressedFilename(source));
-        }
-
-        CompressorInputStream compressed = null;
-        FileOutputStream output = null;
-        try {
-            compressed = createCompressorInputStream(getCompressionType(), source);
-            output = new FileOutputStream(destination);
-            IOUtils.copy(compressed, output);
-        } catch (CompressorException e) {
-            throw new IOException(e);
-        } finally {
-            IOUtils.closeQuietly(compressed);
-            IOUtils.closeQuietly(output);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public InputStream decompressingStream(InputStream compressedStream) throws IOException {
-        try {
-            return CommonsStreamFactory.createCompressorInputStream(getCompressionType(), compressedStream);
-        } catch (CompressorException e) {
-            throw new IOException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String getFilenameExtension() {
-        return getCompressionType().getDefaultFileExtension();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private String getCompressedFilename(File source) {
@@ -115,11 +72,9 @@ class CommonsCompressor implements Compressor {
 
     private String getDecompressedFilename(File source) {
         FileType fileType = FileType.get(source);
-
         if (compressionType != fileType.getCompressionType()) {
             throw new IllegalArgumentException(source + " is not of type " + compressionType);
         }
-
         return source.getName().substring(0, source.getName().length() - fileType.getSuffix().length());
     }
 
@@ -146,5 +101,4 @@ class CommonsCompressor implements Compressor {
             throw new IllegalArgumentException("Can not write to destination " + destination);
         }
     }
-
 }

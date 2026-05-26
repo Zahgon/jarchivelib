@@ -17,7 +17,6 @@ package org.rauschig.jarchivelib;
 
 import java.io.File;
 import java.io.IOException;
-
 import org.apache.commons.compress.archivers.ArchiveInputStream;
 import org.apache.commons.compress.archivers.ArchiveOutputStream;
 import org.apache.commons.compress.archivers.sevenz.SevenZFile;
@@ -38,12 +37,12 @@ class SevenZArchiver extends CommonsArchiver {
 
     @Override
     protected ArchiveOutputStream createArchiveOutputStream(File archive) throws IOException {
-        return new SevenZOutputStream(new SevenZOutputFile(archive));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     protected ArchiveInputStream createArchiveInputStream(File archive) throws IOException {
-        return new SevenZInputStream(new SevenZFile(archive));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -59,17 +58,17 @@ class SevenZArchiver extends CommonsArchiver {
 
         @Override
         public int read(byte[] b, int off, int len) throws IOException {
-            return file.read(b, off, len);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public org.apache.commons.compress.archivers.ArchiveEntry getNextEntry() throws IOException {
-            return file.getNextEntry();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void close() throws IOException {
-            file.close();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -86,48 +85,46 @@ class SevenZArchiver extends CommonsArchiver {
 
         @Override
         public void putArchiveEntry(org.apache.commons.compress.archivers.ArchiveEntry entry) throws IOException {
-            file.putArchiveEntry(entry);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void closeArchiveEntry() throws IOException {
-            file.closeArchiveEntry();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void finish() throws IOException {
-            file.finish();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
-        public org.apache.commons.compress.archivers.ArchiveEntry createArchiveEntry(File inputFile, String entryName)
-            throws IOException {
-            return file.createArchiveEntry(inputFile, entryName);
+        public org.apache.commons.compress.archivers.ArchiveEntry createArchiveEntry(File inputFile, String entryName) throws IOException {
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void write(int b) throws IOException {
-            file.write(b);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void write(byte[] b) throws IOException {
-            file.write(b);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void write(byte[] b, int off, int len) throws IOException {
-            file.write(b, off, len);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void close() throws IOException {
-            file.close();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public SevenZOutputFile getSevenZOutputFile() {
-            return file;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
-
 }

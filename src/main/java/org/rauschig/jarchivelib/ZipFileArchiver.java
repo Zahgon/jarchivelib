@@ -19,7 +19,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
-
 import org.apache.commons.compress.archivers.ArchiveEntry;
 import org.apache.commons.compress.archivers.ArchiveInputStream;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
@@ -37,7 +36,7 @@ class ZipFileArchiver extends CommonsArchiver {
 
     @Override
     protected ArchiveInputStream createArchiveInputStream(File archive) throws IOException {
-        return new ZipFileArchiveInputStream(new ZipFile(archive));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -48,7 +47,9 @@ class ZipFileArchiver extends CommonsArchiver {
         private ZipFile file;
 
         private Enumeration<ZipArchiveEntry> entries;
+
         private ZipArchiveEntry currentEntry;
+
         private InputStream currentEntryStream;
 
         public ZipFileArchiveInputStream(ZipFile file) {
@@ -57,40 +58,25 @@ class ZipFileArchiver extends CommonsArchiver {
 
         @Override
         public ZipArchiveEntry getNextEntry() throws IOException {
-            Enumeration<ZipArchiveEntry> entries = getEntries();
-
-            closeCurrentEntryStream();
-
-            currentEntry = (entries.hasMoreElements()) ? entries.nextElement() : null;
-            currentEntryStream = (currentEntry != null) ? file.getInputStream(currentEntry) : null;
-
-            return currentEntry;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public int read(byte[] b, int off, int len) throws IOException {
-            int read = getCurrentEntryStream().read(b, off, len);
-
-            if (read == -1) {
-                IOUtils.closeQuietly(getCurrentEntryStream());
-            }
-
-            count(read);
-
-            return read;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean canReadEntryData(ArchiveEntry archiveEntry) {
-            return archiveEntry == getCurrentEntry();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public ZipArchiveEntry getCurrentEntry() {
-            return currentEntry;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public InputStream getCurrentEntryStream() {
-            return currentEntryStream;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private Enumeration<ZipArchiveEntry> getEntries() {
@@ -103,7 +89,6 @@ class ZipFileArchiver extends CommonsArchiver {
         private void closeCurrentEntryStream() {
             InputStream stream = getCurrentEntryStream();
             IOUtils.closeQuietly(stream);
-
             currentEntryStream = null;
         }
 
@@ -117,10 +102,7 @@ class ZipFileArchiver extends CommonsArchiver {
 
         @Override
         public void close() throws IOException {
-            closeCurrentEntryStream();
-            closeFile();
-
-            super.close();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 }
